@@ -1,17 +1,4 @@
-"""Module providing a function to check if the given graph is bipartite"""
-
-
 def read_graph(filename: str) -> tuple:
-    """
-    Read the graph from the file, 
-    which contains a number of vertices of the graph and its adjacency list
-
-    Args:
-        filename (str): Name of the file, which contains information about the graph
-
-    Returns:
-        tuple: Tuple of number of vertices and adjacency list of the graph
-    """
     with open(filename, mode='r', encoding='utf-8') as f:
         n = int(f.readline())
         adj_matrix = [[int(num) for num in line.split(' ')] for line in f]
@@ -19,18 +6,6 @@ def read_graph(filename: str) -> tuple:
 
 
 def is_bipartite(start: int, n: int, graph: list) -> tuple:
-    """
-    Checks if the given connected graph is bipartite or not using breadth-first search algorithm
-
-    Args:
-        start (int): Starting vertex for bfs algorithm
-        n (int): Number of vertices in the graph
-        graph (list): Adjacency matrix of the graph
-
-    Returns:
-        tuple: Tuple that contains boolean value, which indicates if the given graph is bipartite,
-        and dictionary with colors of vertices
-    """
     colors = {}
     queue = [start]
     colors[start] = 0
@@ -51,10 +26,6 @@ def is_bipartite(start: int, n: int, graph: list) -> tuple:
 
 
 def main():
-    """
-    Reads the graph from the in.txt file, checks if its bipartite,
-    and then writes the result in the out.txt file
-    """
     n, adj_matrix = read_graph('in.txt')
     result, colors = is_bipartite(0, n, adj_matrix)
     output = str()
